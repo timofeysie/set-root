@@ -1,4 +1,7 @@
+## Set Root
+
 This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+It uses that tabs starter.
 
 After having a problem with the set root function, I created this project to demonstrate the issue:
 
@@ -75,6 +78,11 @@ package build	Start a package build
 package download	Download your packaged app
 package info	Get info about a build
 package list	List your cloud builds
+
+To push commits to GitHub:
+```
+git push -u origin master
+```
 
 
 ## How to use this template

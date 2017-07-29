@@ -1,6 +1,10 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+      <ion-title start>Home</ion-title>
+    <ion-buttons end>
+      <ion-icon end name="log-out"
+        (click)="logout()"></ion-icon>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -14,4 +18,5 @@
     Take a look at the <code>src/pages/</code> directory to add or change tabs,
     update any existing page or create new pages.
   </p>
+  <button ion-button (click)="logout()">Logout</button>
 </ion-content>

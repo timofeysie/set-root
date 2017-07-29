@@ -1,5 +1,51 @@
 This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
 
+After having a problem with the set root function, I created this project to demonstrate the issue:
+
+[This issue is still open](https://github.com/ionic-team/ionic-app-scripts/issues/919)
+*donaldruby opened this issue on 26 Apr*
+
+*jackletterman commented 14 days ago
+Same Issue here, cannot get singleton service to work like referenced in documentation*
+
+It's been open for about four months.
+
+[Another issue](https://github.com/ionic-team/ionic/issues/5960)
+using setRoot every time you navigate to a page from the menu is gonna "reset" that page every time it is navigated too because its setting it as root, therefore causing it to be constructed every time it is navigated too.
+
+We're using setRoot to init the navigation stack after a login or a logout, and the post-login controller is initialized 3 times in a row after a login - logout - login cycle.
+
+Someone offered [this workaround](https://forum.ionicframework.com/t/after-setroot-tabspage-the-default-tab-page-appears-twice/71770/10)
+
+This workaround goes as such:
+```
+import { NgZone } from '@angular/core';
+constructor(private zone: NgZone) { ... }
+```
+Where you call setRoot:
+```
+this.zone.run(() => {
+    this.navCtrl.setRoot(TabsPage);
+});
+```
+
+But this does not work for us.
+
+Another [issue](https://github.com/ionic-team/ionic/issues/9401)
+
+rapropos states: *Using Zone.run is virtually always papering over a more serious problem. I strongly urge people not to be satisfied with it and instead search for the root cause of their underlying issue.*
+
+But there is no other solution.
+
+Using this.nav.popToRoot() has the same problem.
+So even without the setRoot() call, we have a problem.
+
+But, after trying to demonstrate this problem, I was unable to.
+This project runs fine.
+You can login, and logout from the home page.
+I thought you had to logout from the same page that is the root, which would be the tabs class.
+However, after getting ready to use the emitter service to communicate before pages, the logout from the home page class just worked, so, I'm not sure what's going on now.
+
 
 ## a full list of Ionic commands. 
 You can also see the list on the command line with ionic --help.
